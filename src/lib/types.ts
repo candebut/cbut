@@ -44,6 +44,8 @@ export interface Product {
   thumbnail: string;
 }
 
+export type FavoriteId = Product["id"];
+
 export interface Products {
   products: Product[];
   total: number;

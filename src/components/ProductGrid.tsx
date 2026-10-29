@@ -19,7 +19,7 @@ export default function ProductGrid({ products, query }: ProductGridProps) {
   }
 
   return (
-    <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4">
+    <ul aria-labelledby="catalog-heading" className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4">
       {products.map((product) => (
         <li key={product.id} className="min-w-0">
           <ProductCard product={product} />

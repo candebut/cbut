@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 
 //TODO: make the search execute while user stops writing 
+//TODO:: when clearing search bar, all products should be displayed 
 
 type SearchBarProps = {
   initialQuery: string;
@@ -21,7 +22,7 @@ export default function SearchBar({ initialQuery }: SearchBarProps) {
 
   return (
     <form
-      className="mb-8 flex min-h-14 w-full max-w-2xl border border-[#cbd3ca] bg-white shadow-[0_8px_24px_rgba(23,59,46,0.06)] focus-within:border-[#173b2e]"
+      className="mb-8 flex min-h-14 w-full max-w-2xl border border-[#cbd3ca] bg-white shadow-[0_8px_24px_rgba(23,59,46,0.06)] focus-within:border-[#173b2e] focus-within:ring-2 focus-within:ring-[#173b2e]/30"
       onSubmit={handleSubmit}
       role="search"
     >

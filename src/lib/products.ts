@@ -2,10 +2,17 @@ import type { Product, Products } from "@/lib/types";
 
 const PRODUCTS_API_URL = "https://dummyjson.com/products";
 
+export class ProductsApiError extends Error {
+  constructor(public readonly status: number) {
+    super(`DummyJSON request failed with status ${status}`);
+    this.name = "ProductsApiError";
+  }
+}
+
 async function fetchJson<T>(url: string): Promise<T> {
   const response = await fetch(url);
   if (!response.ok) {
-    throw new Error(`DummyJSON request failed with status ${response.status}`);
+    throw new ProductsApiError(response.status);
   }
 
   return (await response.json()) as T;

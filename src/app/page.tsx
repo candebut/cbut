@@ -46,12 +46,12 @@ export default async function Home({ searchParams }: HomePageProps) {
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-[#c44732]">
               Explorar / 01
             </p>
-            <h1 className="text-3xl font-semibold tracking-tight text-[#17231d] sm:text-5xl">
+            <h1 id="catalog-heading" className="text-3xl font-semibold tracking-tight text-[#17231d] sm:text-5xl">
               Todos los productos<span className="text-[#c44732]">.</span>
             </h1>
           </div>
           {!hasError && (
-            <p className="text-sm font-medium text-[#5b665f]">
+            <p className="text-sm font-medium text-[#5b665f]" role="status" aria-live="polite" aria-atomic="true">
               {/* TODO:: move logic outside */}
               {total} {total === 1 ? "producto" : "productos"}
             </p>
