@@ -1,10 +1,8 @@
 "use client";
-
 import { useRouter } from "next/navigation";
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 
-//TODO: make the search execute while user stops writing 
-//TODO:: when clearing search bar, all products should be displayed 
+const SEARCH_DEBOUNCE_MS = 350;
 
 type SearchBarProps = {
   initialQuery: string;
@@ -13,10 +11,33 @@ type SearchBarProps = {
 export default function SearchBar({ initialQuery }: SearchBarProps) {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState(initialQuery);
+  const debounceTimer = useRef<number | null>(null);
+
+  useEffect(() => {
+    const query = searchTerm.trim();
+    if (query === initialQuery) return;
+
+    const timer = window.setTimeout(() => {
+      debounceTimer.current = null;
+      router.replace(query ? `/?q=${encodeURIComponent(query)}` : "/");
+    }, SEARCH_DEBOUNCE_MS);
+    debounceTimer.current = timer;
+
+    return () => {
+      window.clearTimeout(timer);
+      if (debounceTimer.current === timer) debounceTimer.current = null;
+    };
+  }, [initialQuery, router, searchTerm]);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const query = searchTerm.trim();
+    if (debounceTimer.current !== null) {
+      window.clearTimeout(debounceTimer.current);
+      debounceTimer.current = null;
+    }
+    if (query === initialQuery) return;
+
     router.push(query ? `/?q=${encodeURIComponent(query)}` : "/");
   }
 

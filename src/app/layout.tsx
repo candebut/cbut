@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { FavoritesProvider } from "@/components/FavoritesProvider";
+import SiteHeader from "@/components/SiteHeader";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -25,7 +26,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <FavoritesProvider>{children}</FavoritesProvider>
+        <FavoritesProvider>
+          <SiteHeader />
+          {children}
+        </FavoritesProvider>
       </body>
     </html>
   );

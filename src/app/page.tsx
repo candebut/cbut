@@ -25,22 +25,7 @@ export default async function Home({ searchParams }: HomePageProps) {
   }
 
   return (
-    <div className="min-h-screen">
-      <header className="border-b border-white/15 bg-[#173b2e] text-white">
-        <div className="mx-auto flex max-w-[1340px] items-center justify-between px-4 py-4 sm:px-7 lg:px-10">
-          <Link href="/" className="flex items-center gap-3" aria-label="Punto, inicio">
-            <span className="grid size-9 place-items-center rounded-sm bg-[#d6f36a] text-sm font-black text-[#173b2e]">
-              P
-            </span>
-            <span className="text-sm font-bold tracking-[0.12em]">PUNTO</span>
-          </Link>
-          <p className="text-xs font-medium uppercase tracking-[0.12em] text-white/65">
-            Catálogo de productos
-          </p>
-        </div>
-      </header>
-
-      <main className="mx-auto w-full max-w-[1340px] px-4 pb-20 pt-9 sm:px-7 sm:pt-12 lg:px-10 lg:pt-16">
+    <main className="mx-auto w-full max-w-[1340px] px-4 pb-20 pt-9 sm:px-7 sm:pt-12 lg:px-10 lg:pt-16">
         <div className="mb-8 flex flex-col justify-between gap-5 sm:mb-10 sm:flex-row sm:items-end">
           <div>
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-[#c44732]">
@@ -78,7 +63,6 @@ export default async function Home({ searchParams }: HomePageProps) {
         ) : (
           <ProductGrid products={products} query={query} />
         )}
-      </main>
-    </div>
+    </main>
   );
 }
